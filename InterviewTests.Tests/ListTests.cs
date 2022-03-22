@@ -9,6 +9,131 @@ namespace InterviewTests.Tests
     public class ListTests  
     {
         [TestMethod]
+        public void EraseElement()
+        {
+            //Arrange
+            List list = new List();
+            list.PushFront(1);
+            list.PushFront(2);
+            list.PushFront(3);
+            Element lastElement = list.Last();
+
+            //Act
+            list.Erase(lastElement);
+
+            //Assert
+            Assert.AreEqual(list.Back(), 2);
+
+        }
+
+        [TestMethod]
+        public void InsertElement()
+        {
+            //Arrange
+            List list = new List();
+            list.PushFront(1);
+            Element oldElement = list.First();
+
+            //Act
+            list.Insert(oldElement, 21);
+
+            //Assert
+            Assert.AreEqual(list.Front(), 21);
+            Assert.AreEqual(list.Back(), 1);
+        }
+
+        [TestMethod]
+        public void PopBackPopulatedList()
+        {
+            //Arrange
+            List list = new List();
+            list.PushBack(11);
+            list.PushFront(21);
+
+            //Act
+            list.PopBack();
+
+            //Assert
+            Assert.AreEqual(list.Back(), 21);
+
+        }
+
+        [TestMethod]
+        [ExpectedException(typeof(ArgumentNullException))]
+        public void PopBackEmptyList()
+        {
+            //Arrange
+            List list = new List();
+
+            //Act
+            list.PopBack();
+
+        }
+
+        [TestMethod]
+        public void PopFrontPopulatedList()
+        {
+            //Arrange
+            List list = new List();
+
+            //Act
+            list.PushFront(11);
+            list.PushFront(21);
+            list.PushFront(89);
+            list.PushFront(26);
+            list.PushFront(12);
+
+            list.PopFront();
+            list.PopFront();
+
+            //Assert
+            Assert.AreEqual(list.Front(), 89);
+
+        }
+        [TestMethod]
+        [ExpectedException(typeof(ArgumentNullException))]
+        public void PopFrontEmptyList()
+        {
+            //Arrange
+            List list = new List();
+
+            //Act
+            list.PopFront();
+        }
+
+        [TestMethod]
+        public void PushBackValues()
+        {
+            //Arrange
+            List list = new List();
+
+            //Act
+            list.PushBack(11);
+            list.PushBack(24);
+            list.PushBack(17);
+
+            //Assert
+            Assert.AreEqual(list.Back(), 17);
+            Assert.AreEqual(list.Front(), 11);
+        }
+
+        [TestMethod]
+        public void PushFrontValues()
+        {
+            //Arrange
+            List list = new List();
+            
+            //Act
+            list.PushFront(11);
+            list.PushFront(21);
+            list.PushFront(34);
+
+            //Assert
+            Assert.AreEqual(list.Front(), 34);
+            Assert.AreEqual(list.Back(), 11);
+        }
+
+        [TestMethod]
         public void BackValueFromPopulatedList()
         {
             //Arrange
