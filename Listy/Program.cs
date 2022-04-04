@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Linq;
 
 namespace Listy
 {
@@ -28,7 +29,29 @@ namespace Listy
             Console.WriteLine("Czy teraz lista jest pusta? {0}", lista.IsEmpty());
             Console.WriteLine("Wartość pierwszego elementu listy = {0}," +
                 " ostatniego = {1}", lista.Front(), lista.Back());
-            
+
+            int min = 1;
+            int max = 20;
+
+            Random random = new Random();
+
+            int[] tab = Enumerable
+                .Repeat(0, 21)
+                .Select(i => random.Next(min, max))
+                .ToArray();
+            PrintTable(tab); 
+            SortList.SelectionSort(tab, 21);
+            PrintTable(tab);
+        }
+
+        private static void PrintTable(int[] tab)
+        {
+            Console.WriteLine("----");
+            foreach(int i in tab)
+            {
+                Console.WriteLine(i);
+            }
+            Console.WriteLine("----");
         }
     }
 }
